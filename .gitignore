@@ -1,0 +1,35 @@
+# Módulos Node.js
+node_modules/
+
+# Arquivos de log
+logs
+*.log
+
+# Arquivos de ambiente
+.env
+
+# Arquivos de compilação nativa
+/build/
+
+# Diretório de cobertura (quando você executa testes)
+coverage/
+
+# Arquivos de dependências
+package-lock.json
+yarn.lock
+
+# Arquivos de configuração do VSCode
+.vscode/
+
+# Arquivos de configuração do WebStorm
+.idea/
+
+# Arquivos de sistema
+.DS_Store
+Thumbs.db
+
+# Arquivos do Babel
+dist/
+
+# Arquivos do Mongoose
+*.model.js
