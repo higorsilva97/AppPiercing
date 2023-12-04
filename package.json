@@ -1,0 +1,18 @@
+{
+  "name": "app-piercing",
+  "version": "1.0.0",
+  "description": "app-piercing em node js com ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/core": "^7.23.5",
+    "@babel/preset-env": "^7.23.5",
+    "express": "^4.18.2",
+    "mongoose": "^8.0.2"
+  }
+}
