@@ -1,20 +1,13 @@
+const { configureApp, connectToDatabase } = require("./config");
+const routes = require("./routes/index");
 
-const express = require("express");
-const mongoose = require("mongoose");
-const routes = require("./routes")
-const { Schema } = mongoose;
-
-
-const app = express();
-app.use(express.json());
+const app = configureApp();
 const port = 3000;
 
-app.use(routes.profissionalRoutes);
+connectToDatabase();
+
+app.use(routes);
 
 app.listen(port, () => {
-  mongoose.connect(
-    "mongodb+srv://higorsilva97:0ZZsxSXfAPeVquUn@app-piercing.pujzj0f.mongodb.net/?retryWrites=true&w=majority"
-  );
-
-    console.log("Servidor rodando...")
+  console.log(`Servidor rodando na porta ${port}`);
 });
