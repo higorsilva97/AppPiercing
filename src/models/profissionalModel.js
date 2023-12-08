@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
-const Agendamento = require("./agendamentoModel");
 
 const profissionalSchema = new Schema({
   nome: { type: String, required: true },
@@ -8,7 +7,7 @@ const profissionalSchema = new Schema({
   telefone: { type: String, required: true, unique: true },
   endereco: { type: String, required: true },
   servicos: { type: [String], required: true },
-  agendamentos: [Agendamento.schema],
+  piercings: [{ type: Schema.Types.ObjectId, ref: 'Piercing' }]
 });
 
 const Profissional = mongoose.model("Profissional", profissionalSchema);

@@ -7,7 +7,8 @@ class PiercingController {
         nome: req.body.nome,
         descricao: req.body.descricao,
         preco: req.body.preco,
-        quantidade: req.body.estoque,
+        estoque: req.body.estoque,
+        categoria: req.body.categoria
       });
 
       const novoPiercing = await piercing.save();
@@ -43,7 +44,7 @@ class PiercingController {
 
   async update(req, res) {
     try {
-      const { nome, descricao, preco, estoquq } = req.body;
+      const { nome, descricao, preco, estoque, categoria } = req.body;
 
       let piercing = await piercingModel.findById(req.params.id);
 
@@ -55,6 +56,7 @@ class PiercingController {
       piercing.descricao = descricao || piercing.descricao;
       piercing.preco = preco || piercing.preco;
       piercing.estoque = estoque || piercing.estoque;
+      piercing.categoria = categoria || piercing.categoria;categoria
 
       await piercing.save();
 

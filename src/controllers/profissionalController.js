@@ -11,7 +11,7 @@ class ProfissionalController {
         telefone: req.body.telefone,
         endereco: req.body.endereco,
         servicos: req.body.servicos,
-        agendamentos: req.body.agendamentos,
+        piercing: req.body.piercing,
       });
 
       const novoProfissional = await profissional.save();
@@ -54,7 +54,7 @@ class ProfissionalController {
       const telefone = req.body.telefone;
       const endereco = req.body.endereco;
       const servicos = req.body.servicos;
-      const agendamentos = req.body.agendamentos;
+      const piercing = req.body.piercing;
 
       let profissional = await Profissional.findById(req.params.id);
 
@@ -67,7 +67,7 @@ class ProfissionalController {
       profissional.telefone = telefone || profissional.telefone;
       profissional.endereco = endereco || profissional.endereco;
       profissional.servicos = servicos || profissional.servicos;
-      profissional.agendamentos = agendamentos || profissional.agendamentos;
+      profissional.piercing = piercing || profissional.piercing;
 
 
       await profissional.save();

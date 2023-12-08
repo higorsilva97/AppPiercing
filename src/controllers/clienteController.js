@@ -1,81 +1,70 @@
-const ClienteModel = require("../models/clienteModel");  // ver a boa pratica
+const clienteService = require("../services/clienteService");
 
 class ClienteController {
-
-  async create(req, res) {
+  async createCliente(req, res) {
     try {
-      const cliente = new ClienteModel({
-        nome: req.body.nome,
-        dataNascimento: req.body.dataNascimento,
-        email: req.body.email,
-        telefone: req.body.telefone,
-        endereco: req.body.endereco,
-      });
-
-      const novoCliente = await cliente.save();
+      const novoCliente = await clienteService.createCliente(req.body);
       res.status(201).json(novoCliente);
     } catch (error) {
       res.status(500).json({ message: error.message });
     }
   }
 
-  async getAll(req, res) {
+  async getAllCliente(req, res) {
     try {
-      const clientes = await ClienteModel.find();
+      const clientes = await clienteService.getAllCliente();
       res.status(200).json(clientes);
     } catch (error) {
       res.status(500).json({ message: error.message });
     }
   }
 
-  async getById(req, res) {
+  async getClienteById(req, res) {
     try {
       const id = req.params.id;
-      const cliente = await ClienteModel.findById(id);
-
-      if (!cliente) {
-        return res.status(404).json({ message: "Cliente não encontrado" });
-      }
-
+      const cliente = await clienteService.getClienteById(id);
       res.status(200).json(cliente);
     } catch (error) {
       res.status(500).json({ message: error.message });
     }
   }
 
-  async update(req, res) {
+  async updateCliente(req, res) {
     try {
-      const { nome, dataNascimento, email, telefone, endereco } = req.body;
-
-      let cliente = await ClienteModel.findById(req.params.id);
+      const id = req.params.id;
+      const cliente = await clienteService.getClienteById(id);
 
       if (!cliente) {
         return res.status(404).json({ message: "Cliente não encontrado" });
       }
 
-      cliente.nome = nome || cliente.nome;
-      cliente.dataNascimento = dataNascimento || cliente.dataNascimento;
-      cliente.email = email || cliente.email;
-      cliente.telefone = telefone || cliente.telefone;
-      cliente.endereco = endereco || cliente.endereco;
+      const { nome, email, telefone, endereco } = req.body;
 
-      await cliente.save();
+      const clienteAtualizado = await clienteService.updateCliente(id, {
+        nome,
+        email,
+        telefone,
+        endereco,
+      });
 
-      res.status(200).json(cliente);
+      res.status(200).json(clienteAtualizado);
     } catch (error) {
       res.status(500).json({ message: error.message });
     }
   }
 
-  async delete(req, res) {
+  async deleteCliente(req, res) {
     try {
-      const cliente = await ClienteModel.findByIdAndDelete(req.params.id);
+      const id = req.params.id;
+      const cliente = await clienteService.getClienteById(id);
 
       if (!cliente) {
         return res.status(404).json({ message: "Cliente não encontrado" });
       }
 
-      res.status(204).send();
+      await clienteService.deleteCliente(id);
+
+      res.status(204).send(); // Como você está excluindo, uma resposta sem conteúdo é apropriada
     } catch (error) {
       res.status(500).json({ message: error.message });
     }

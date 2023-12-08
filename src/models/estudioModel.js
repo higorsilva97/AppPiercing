@@ -3,7 +3,9 @@ const { Schema } = mongoose;
 
 const estudioSchema = new Schema({
   nome: { type: String, required: true },
-  piercings: [{ type: Schema.Types.ObjectId, ref: "Piercing" }],
+  telefone:{ type: String, required: true },
+  endereco: { type: String, required: true },
+  profissionais: [{ type: Schema.Types.ObjectId, ref: "Profissional" }],
 });
 
 const Estudio = mongoose.model("Estudio", estudioSchema);

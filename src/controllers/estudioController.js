@@ -5,6 +5,7 @@ class EstudioController {
     try {
       const estudio = new EstudioModel({
         nome: req.body.nome,
+        profissionais: req.body.profissionais
       });
 
       const novoEstudio = await estudio.save();
@@ -26,7 +27,7 @@ class EstudioController {
   async getById(req, res) {
     try {
       const id = req.params.id;
-      const estudio = await EstudioModel.findById(id).populate("piercings");
+      const estudio = await EstudioModel.findById(id).populate("profissional");
 
       if (!estudio) {
         return res.status(404).json({ message: "Estúdio não encontrado" });
@@ -40,7 +41,7 @@ class EstudioController {
 
   async update(req, res) {
     try {
-      const { nome } = req.body;
+      const { nome, profissionais } = req.body;
 
       let estudio = await EstudioModel.findById(req.params.id);
 
@@ -49,6 +50,7 @@ class EstudioController {
       }
 
       estudio.nome = nome || estudio.nome;
+      estudio.profissionais = nome || estudio.profissionais;
 
       await estudio.save();
 
