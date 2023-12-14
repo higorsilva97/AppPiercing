@@ -7,7 +7,7 @@ const agendamentoSchema = new Schema({
   cliente: { type: Schema.Types.ObjectId, ref: 'Cliente' },
   profissional: { type: Schema.Types.ObjectId, ref: 'Profissional' },
   piercing: { type: Schema.Types.ObjectId, ref: 'Piercing' },
-  serivoc: { type: Schema.Types.ObjectId, ref: 'Servico' },
+  servico: { type: Schema.Types.ObjectId, ref: 'Servico' },
   estudio: { type: Schema.Types.ObjectId, ref: 'Estudio' },
   
 });

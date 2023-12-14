@@ -4,7 +4,7 @@ const router = express.Router();
 
 router.post("/", clienteController.createCliente);
 
-router.get("/", clienteController.getAllCliente);
+router.get("/", clienteController.getAllClientes);
 
 router.get("/:id", clienteController.getClienteById);
 

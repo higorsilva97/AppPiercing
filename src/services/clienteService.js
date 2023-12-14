@@ -1,24 +1,38 @@
-const ClienteRepository = require("../repository/clienteRepository");
+const clienteRepository = require("../repositories/clienteRepository")
 
 class ClienteService {
-  async createCliente({ nome, email, telefone, endereco }) {
-    return ClienteRepository.createCliente({ nome, email, telefone, endereco });
+  async createCliente({ nome, email, senha, telefone, endereco, agendamentos }) {
+    return clienteRepository.createCliente({
+      nome,
+      email,
+      senha,
+      telefone,
+      endereco,
+      agendamentos
+    });
   }
 
-  async getAllCliente() {
-    return ClienteRepository.getAllCliente();
+  async getAllClientes() {
+    return clienteRepository.getAllCliente();
   }
 
   async getClienteById(id) {
-    return ClienteRepository.getClienteById(id);
+    return clienteRepository.getClienteById(id);
   }
 
-  async updateCliente(id, { nome, email, telefone, endereco }) {
-    return ClienteRepository.updateCliente(id, { nome, email, telefone, endereco });
+  async updateCliente(id, { nome, email, senha, telefone, endereco,agendamentos }) {
+    return clienteRepository.updateCliente(id, {
+      nome,
+      email,
+      senha,
+      telefone,
+      endereco,
+      agendamentos
+    });
   }
 
   async deleteCliente(id) {
-    return ClienteRepository.deleteCliente(id);
+    return clienteRepository.deleteCliente(id);
   }
 }
 

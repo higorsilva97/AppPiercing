@@ -2,14 +2,14 @@ const express = require("express");
 const ProfissionalController = require("../controllers/profissionalController");
 const router = express.Router();
 
-router.post("/", ProfissionalController.create);
+router.post("/", ProfissionalController.createProfissional);
 
-router.get("/", ProfissionalController.getAll);
+router.get("/", ProfissionalController.getAllProfissionais);
 
-router.get("/:id", ProfissionalController.getById);
+router.get("/:id", ProfissionalController.getProfissionalById);
 
-router.put("/:id", ProfissionalController.update);
+router.put("/:id", ProfissionalController.updateProfissional);
 
-router.delete("/:id", ProfissionalController.delete);
+router.delete("/:id", ProfissionalController.deleteProfissional);
 
 module.exports = router;

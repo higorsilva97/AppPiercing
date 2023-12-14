@@ -1,33 +1,28 @@
-const EstudioModel = require("../models/estudioModel");
+const estudioService = require("../services/estudioService");
 
 class EstudioController {
-  async create(req, res) {
+  async createEstudio(req, res) {
     try {
-      const estudio = new EstudioModel({
-        nome: req.body.nome,
-        profissionais: req.body.profissionais
-      });
-
-      const novoEstudio = await estudio.save();
+      const novoEstudio = await estudioService.createEstudio(req.body);
       res.status(201).json(novoEstudio);
     } catch (error) {
       res.status(500).json({ message: error.message });
     }
   }
 
-  async getAll(req, res) {
+  async getAllEstudios(req, res) {
     try {
-      const estudios = await EstudioModel.find().populate("piercings");
+      const estudios = await estudioService.getAllEstudios();
       res.status(200).json(estudios);
     } catch (error) {
       res.status(500).json({ message: error.message });
     }
   }
 
-  async getById(req, res) {
+  async getEstudioById(req, res) {
     try {
       const id = req.params.id;
-      const estudio = await EstudioModel.findById(id).populate("profissional");
+      const estudio = await estudioService.getEstudioById(id);
 
       if (!estudio) {
         return res.status(404).json({ message: "Estúdio não encontrado" });
@@ -39,35 +34,37 @@ class EstudioController {
     }
   }
 
-  async update(req, res) {
+  async updateEstudio(req, res) {
     try {
-      const { nome, profissionais } = req.body;
-
-      let estudio = await EstudioModel.findById(req.params.id);
+      const id = req.params.id;
+      const estudio = await estudioService.getEstudioById(id);
 
       if (!estudio) {
         return res.status(404).json({ message: "Estúdio não encontrado" });
       }
 
-      estudio.nome = nome || estudio.nome;
-      estudio.profissionais = nome || estudio.profissionais;
+      const { nome, endereco, telefone } = req.body;
+      const estudioAtualizado = await estudioService.updateEstudio(id, {
+        nome,
+        endereco,
+        telefone,
+      });
 
-      await estudio.save();
-
-      res.status(200).json(estudio);
+      res.status(200).json(estudioAtualizado);
     } catch (error) {
       res.status(500).json({ message: error.message });
     }
   }
 
-  async delete(req, res) {
+  async deleteEstudio(req, res) {
     try {
-      const estudio = await EstudioModel.findByIdAndDelete(req.params.id);
+      const id = req.params.id;
+      const estudio = await estudioService.getEstudioById(id);
 
       if (!estudio) {
         return res.status(404).json({ message: "Estúdio não encontrado" });
       }
-
+      estudioService.deleteEstudio(id);
       res.status(204).send();
     } catch (error) {
       res.status(500).json({ message: error.message });

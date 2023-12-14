@@ -2,14 +2,14 @@ const express = require("express");
 const piercingController = require("../controllers/piercingController");
 const router = express.Router();
 
-router.post("/", piercingController.create);
+router.post("/", piercingController.createPiercing);
 
-router.get("/", piercingController.getAll);
+router.get("/", piercingController.getAllPiercings);
 
-router.get("/:id", piercingController.getById);
+router.get("/:id", piercingController.getPiercingById);
 
-router.put("/:id", piercingController.update);
+router.put("/:id", piercingController.updatePiercing);
 
-router.delete("/:id", piercingController.delete);
+router.delete("/:id", piercingController.deletePiercing);
 
 module.exports = router;

@@ -10,9 +10,9 @@ class ClienteController {
     }
   }
 
-  async getAllCliente(req, res) {
+  async getAllClientes(req, res) {
     try {
-      const clientes = await clienteService.getAllCliente();
+      const clientes = await clienteService.getAllClientes();
       res.status(200).json(clientes);
     } catch (error) {
       res.status(500).json({ message: error.message });

@@ -8,6 +8,7 @@ const piercingSchema = new Schema({
   estoque: { type: Number, required: true },
   categoria: { type: String, required: true },
   local: { type: String, required: true },
+  profissional: [{ type: Schema.Types.ObjectId, ref: 'Profissional' }]
 });
 
 const Piercing = mongoose.model("Piercing", piercingSchema);

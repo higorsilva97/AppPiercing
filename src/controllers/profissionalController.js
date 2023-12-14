@@ -1,30 +1,20 @@
-const Profissional = require("../models/profissionalModel");
-
+const profissionalService = require("../services/profissionalService");
 
 class ProfissionalController {
-  //create
-  async create(req, res) {
+  async createProfissional(req, res) {
     try {
-      const profissional = new Profissional({
-        nome: req.body.nome,
-        email: req.body.email,
-        telefone: req.body.telefone,
-        endereco: req.body.endereco,
-        servicos: req.body.servicos,
-        piercing: req.body.piercing,
-      });
-
-      const novoProfissional = await profissional.save();
+      const novoProfissional = await profissionalService.createProfissional(
+        req.body
+      );
       res.status(201).json(novoProfissional);
     } catch (error) {
       res.status(500).json({ message: error.message });
     }
   }
-
   // Busca todos os profissionais
-  async getAll(req, res) {
+  async getAllProfissionais(req, res) {
     try {
-      const profissionais = await Profissional.find();
+      const profissionais = await profissionalService.getAllProfissionais();
       res.status(200).json(profissionais);
     } catch (error) {
       res.status(500).json({ message: error.message });
@@ -32,10 +22,10 @@ class ProfissionalController {
   }
 
   // Busca profissionais por id
-  async getById(req, res) {
+  async getProfissionalById(req, res) {
     try {
       const id = req.params.id;
-      const profissional = await Profissional.findById(id);
+      const profissional = await profissionalService.getProfissionalById(id);
 
       if (!profissional) {
         return res.status(404).json({ message: "Profissional não encontrado" });
@@ -47,52 +37,49 @@ class ProfissionalController {
     }
   }
 
-  async update(req, res) {
+  async updateProfissional(req, res) {
     try {
-      const nome = req.body.nome;
-      const email = req.body.email;
-      const telefone = req.body.telefone;
-      const endereco = req.body.endereco;
-      const servicos = req.body.servicos;
-      const piercing = req.body.piercing;
-
-      let profissional = await Profissional.findById(req.params.id);
+      const id = req.params.id;
+      const profissional = await profissionalService.getProfissionalById(id);
 
       if (!profissional) {
         return res.status(404).json({ message: "Profissional não encontrado" });
       }
 
-      profissional.nome = nome || profissional.nome;
-      profissional.email = email || profissional.email;
-      profissional.telefone = telefone || profissional.telefone;
-      profissional.endereco = endereco || profissional.endereco;
-      profissional.servicos = servicos || profissional.servicos;
-      profissional.piercing = piercing || profissional.piercing;
+      const { nome, email, senha, telefone, servicos, piercings } = req.body;
 
+      const profissionalAtualizado =
+        await profissionalService.updateProfissional(id, {
+          nome,
+          email,
+          senha,
+          telefone,
+          endereco,
+          servicos,
+          piercings,
+        });
 
-      await profissional.save();
-
-      res.status(200).json(profissional);
+      res.status(200).json(profissionalAtualizado);
     } catch (error) {
       res.status(500).json({ message: error.message });
     }
   }
 
-  async delete(req, res) {
+  async deleteProfissional(req, res) {
     try {
-      const profissional = await Profissional.findByIdAndDelete(req.params.id);
-  
+      const id = req.params.id;
+      const profissional = await profissionalService.getProfissionalById(id);
+
       if (!profissional) {
         return res.status(404).json({ message: "Profissional não encontrado" });
       }
-  
-     
+      await profissionalService.deleteProfissional(id);
+
       res.status(204).send();
     } catch (error) {
       res.status(500).json({ message: error.message });
     }
   }
-  
 }
 
 module.exports = new ProfissionalController();
