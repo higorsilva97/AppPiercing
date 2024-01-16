@@ -10,6 +10,7 @@ class ClienteRepository {
   }
 
   createCliente({ nome, email, senha, telefone, endereco, agendamentos }) {
+
     const cliente = new clienteModel({
       nome,
       email,

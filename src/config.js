@@ -1,7 +1,7 @@
+require('dotenv').config();
+
 const express = require("express");
 const mongoose = require("mongoose");
-const routes = require("./routes/index");
-
 
 function configureApp() {
   const app = express();
@@ -10,9 +10,10 @@ function configureApp() {
 }
 
 function connectToDatabase() {
-  mongoose.connect(
-    "mongodb+srv://higorsilva97:0ZZsxSXfAPeVquUn@app-piercing.pujzj0f.mongodb.net/?retryWrites=true&w=majority"
-  );
+  mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => console.log('Conexão bem-sucedida com o MongoDB'))
+    .catch(err => console.error('Erro ao conectar-se ao MongoDB', err));
 }
+
 
 module.exports = { configureApp, connectToDatabase};

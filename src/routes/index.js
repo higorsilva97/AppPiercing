@@ -7,6 +7,8 @@ const agendamentoRoutes = require("./agendamentoRoutes");
 const estudioRoutes = require("./estudioRoutes");
 const servicoRoutes = require("./servicoRoutes");
 
+const app = express();
+
 const router = express.Router();
 
 router.use("/profissional", profissionalRoutes);
@@ -15,5 +17,6 @@ router.use("/piercing", piercingRoutes);
 router.use("/agendamento", agendamentoRoutes);
 router.use("/estudio", estudioRoutes);
 router.use("/servico", servicoRoutes);
+
 
 module.exports = router;

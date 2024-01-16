@@ -4,10 +4,9 @@ const swaggerSpec = require('../src/utils/swagger');
 const routes = require("./routes/index");
 
 const app = configureApp();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
-
 
 connectToDatabase();
 

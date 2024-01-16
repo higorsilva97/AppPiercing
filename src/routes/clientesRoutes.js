@@ -22,9 +22,9 @@ const router = express.Router();
  *         application/json:
  *           example:
  *             nome: "Cliente Cliente"
- *             email: "cliente@example.com"
+ *             email: "clienteexample.com"
  *             senha: "1234656"
- *             telefone: "+55 11 9000-"000
+ *             telefone: "+55 11 9000-000"
  *             endereco: "Rua Exemplo, 123"
  *             agendamentos: []
  *     responses:

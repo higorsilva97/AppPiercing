@@ -2,6 +2,7 @@ const clienteRepository = require("../repositories/clienteRepository")
 
 class ClienteService {
   async createCliente({ nome, email, senha, telefone, endereco, agendamentos }) {
+
     return clienteRepository.createCliente({
       nome,
       email,

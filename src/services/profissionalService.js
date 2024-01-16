@@ -3,7 +3,7 @@ const profissionalRepository = require('../repositories/profissionalRepository')
 class ProfissionalService {
     async getAllProfissionais() {
         try {
-            const profissionais = await profissionalRepository.getAll();
+            const profissionais = await profissionalRepository.getAllProfissionais();
             return profissionais;
         } catch (error) {
             throw new Error('Failed to get profissionais');
@@ -12,7 +12,7 @@ class ProfissionalService {
 
     async getProfissionalById(id) {
         try {
-            const profissional = await profissionalRepository.getById(id);
+            const profissional = await profissionalRepository.getProfissionalById(id);
             return profissional;
         } catch (error) {
             throw new Error('Failed to get profissional');
@@ -21,7 +21,7 @@ class ProfissionalService {
 
     async createProfissional(profissionalData) {
         try {
-            const createdProfissional = await profissionalRepository.create(profissionalData);
+            const createdProfissional = await profissionalRepository.createdProfissional(profissionalData);
             return createdProfissional;
         } catch (error) {
             throw new Error('Failed to create profissional');
@@ -30,7 +30,7 @@ class ProfissionalService {
 
     async updateProfissional(id, profissionalData) {
         try {
-            const updatedProfissional = await profissionalRepository.update(id, profissionalData);
+            const updatedProfissional = await profissionalRepository.updateProfissional(id, profissionalData);
             return updatedProfissional;
         } catch (error) {
             throw new Error('Failed to update profissional');
@@ -39,7 +39,7 @@ class ProfissionalService {
 
     async deleteProfissional(id) {
         try {
-            await profissionalRepository.delete(id);
+            await profissionalRepository.deleteProfissional(id);
         } catch (error) {
             throw new Error('Failed to delete profissional');
         }

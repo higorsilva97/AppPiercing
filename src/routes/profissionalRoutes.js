@@ -1,6 +1,5 @@
-// profissionalRoutes.js
-const express = require('express');
-const ProfissionalController = require('../controllers/profissionalController');
+const express = require("express");
+const ProfissionalController = require("../controllers/profissionalController");
 const router = express.Router();
 
 /**
@@ -37,7 +36,7 @@ const router = express.Router();
  *               profissional: { ... }
  */
 
-router.post('/', ProfissionalController.createProfissional);
+router.post("/", ProfissionalController.createProfissional);
 
 /**
  * @swagger
@@ -54,7 +53,7 @@ router.post('/', ProfissionalController.createProfissional);
  *               profissionais: [...]
  */
 
-router.get('/', ProfissionalController.getAllProfissionais);
+router.get("/", ProfissionalController.getAllProfissionais);
 
 /**
  * @swagger
@@ -78,7 +77,7 @@ router.get('/', ProfissionalController.getAllProfissionais);
  *               profissional: { ... }
  */
 
-router.get('/:id', ProfissionalController.getProfissionalById);
+router.get("/:id", ProfissionalController.getProfissionalById);
 
 /**
  * @swagger
@@ -110,7 +109,7 @@ router.get('/:id', ProfissionalController.getProfissionalById);
  *               profissional: { ... }
  */
 
-router.put('/:id', ProfissionalController.updateProfissional);
+router.put("/:id", ProfissionalController.updateProfissional);
 
 /**
  * @swagger
@@ -130,6 +129,6 @@ router.put('/:id', ProfissionalController.updateProfissional);
  *         description: Profissional deletado com sucesso.
  */
 
-router.delete('/:id', ProfissionalController.deleteProfissional);
+router.delete("/:id", ProfissionalController.deleteProfissional);
 
 module.exports = router;
