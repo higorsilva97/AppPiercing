@@ -5,7 +5,7 @@ class PiercingController {
     try {
       const piercings = await piercingService.getAllPiercings();
       res.status(200).json(piercings);
-        } catch (error) {
+    } catch (error) {
       res.status(500).json({ message: error.message });
     }
   }
@@ -28,7 +28,7 @@ class PiercingController {
   async createPiercing(req, res) {
     try {
       const novoPiercing = await piercingService.createPiercing(req.body);
-      res.status(201).json(novoPiercings);
+      res.status(201).json(novoPiercing);
     } catch (error) {
       res.status(500).json({ message: error.message });
     }

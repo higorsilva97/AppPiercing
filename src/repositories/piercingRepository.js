@@ -17,7 +17,7 @@ class PiercingRepository {
     local,
     profissional,
   }) {
-    const piercing = new PiercingModel({
+    const piercing = new piercingModel({
       nome,
       descricao,
       preco,

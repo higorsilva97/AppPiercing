@@ -1,6 +1,8 @@
 const express = require("express");
 const piercingController = require("../controllers/piercingController");
 const router = express.Router();
+const verificarToken = require("../middlewares/verificarToken");
+
 
 /**
  * @swagger
@@ -36,7 +38,7 @@ const router = express.Router();
  *               piercing: { ... }
  */
 
-router.post("/", piercingController.createPiercing);
+router.post("/", verificarToken, piercingController.createPiercing);
 
 /**
  * @swagger

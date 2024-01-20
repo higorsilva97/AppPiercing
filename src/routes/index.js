@@ -6,6 +6,7 @@ const piercingRoutes = require("./piercingRoutes");
 const agendamentoRoutes = require("./agendamentoRoutes");
 const estudioRoutes = require("./estudioRoutes");
 const servicoRoutes = require("./servicoRoutes");
+const loginRouter = require("./loginRouter");
 
 const app = express();
 
@@ -17,6 +18,7 @@ router.use("/piercing", piercingRoutes);
 router.use("/agendamento", agendamentoRoutes);
 router.use("/estudio", estudioRoutes);
 router.use("/servico", servicoRoutes);
+router.use("/login", loginRouter);
 
 
 module.exports = router;
