@@ -19,6 +19,15 @@ class ProfissionalService {
         }
     }
 
+    async getProfissionalByEmail(email) {
+        try {
+            const profissional = await profissionalRepository.getProfissionalByEmail(email);
+            return profissional;
+        } catch (error) {
+            throw new Error('Failed to get profissional');
+        }
+    }
+
     async createProfissional(profissionalData) {
         try {
             const createdProfissional = await profissionalRepository.createdProfissional(profissionalData);

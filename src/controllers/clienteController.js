@@ -64,7 +64,7 @@ class ClienteController {
 
       await clienteService.deleteCliente(id);
 
-      res.status(204).send(); // Como você está excluindo, uma resposta sem conteúdo é apropriada
+      res.status(204).send();
     } catch (error) {
       res.status(500).json({ message: error.message });
     }

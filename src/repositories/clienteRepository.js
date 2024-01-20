@@ -9,7 +9,11 @@ class ClienteRepository {
     return clienteModel.findById(id).populate("agendamentos");
   }
 
-  createCliente({ nome, email, senha, telefone, endereco, agendamentos }) {
+  getClienteByEmail(email) {
+    return clienteModel.findOne({ email });
+  }
+
+  createCliente({ nome, email, senha, telefone, endereco, tipo,  agendamentos }) {
 
     const cliente = new clienteModel({
       nome,
@@ -17,13 +21,14 @@ class ClienteRepository {
       senha,
       telefone,
       endereco,
+      tipo,
       agendamentos,
     });
 
     return cliente.save();
   }
 
-  updateCliente(id, { nome, email, senha, telefone, endereco, agendamentos }) {
+  updateCliente(id, { nome, email, senha, telefone, endereco, tipo, agendamentos }) {
     return clienteModel.findByIdAndUpdate(
       id,
       {
@@ -32,6 +37,7 @@ class ClienteRepository {
         senha,
         telefone,
         endereco,
+        tipo, 
         agendamentos,
       },
       { new: true }

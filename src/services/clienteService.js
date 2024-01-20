@@ -1,7 +1,7 @@
 const clienteRepository = require("../repositories/clienteRepository")
 
 class ClienteService {
-  async createCliente({ nome, email, senha, telefone, endereco, agendamentos }) {
+  async createCliente({ nome, email, senha, telefone, endereco, tipo, agendamentos }) {
 
     return clienteRepository.createCliente({
       nome,
@@ -9,6 +9,7 @@ class ClienteService {
       senha,
       telefone,
       endereco,
+      tipo,
       agendamentos
     });
   }
@@ -21,13 +22,18 @@ class ClienteService {
     return clienteRepository.getClienteById(id);
   }
 
-  async updateCliente(id, { nome, email, senha, telefone, endereco,agendamentos }) {
+  async getClienteByEmail(email) {
+    return clienteRepository.getClienteByEmail(email);
+  }
+
+  async updateCliente(id, { nome, email, senha, telefone, endereco, tipo, agendamentos }) {
     return clienteRepository.updateCliente(id, {
       nome,
       email,
       senha,
       telefone,
       endereco,
+      tipo, 
       agendamentos
     });
   }

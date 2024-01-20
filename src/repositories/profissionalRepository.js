@@ -10,12 +10,17 @@ class ProfissionalRepository {
     return ProfissionalModel.findById(id).populate("");  // .populate("piercings servicos"); 
   }
 
-  createProfissional({ nome, email, senha, telefone, servicos, piercings }) {
+  getProfissionalByEmail(email) {
+    return ProfissionalModel.findOne({ email });
+  }
+
+  createProfissional({ nome, email, senha, telefone, tipo, servicos, piercings }) {
     const profissional = new ProfissionalModel({
       nome,
       email,
       senha,
       telefone,
+      tipo,
       servicos,
       piercings,
     });
@@ -25,7 +30,7 @@ class ProfissionalRepository {
 
   updateProfissional(
     id,
-    { nome, email, senha, telefone, servicos, piercings }
+    { nome, email, senha, telefone, tipo, servicos, piercings }
   ) {
     return ProfissionalModel.findByIdAndUpdate(
       id,
@@ -34,6 +39,7 @@ class ProfissionalRepository {
         email,
         senha,
         telefone,
+        tipo, 
         servicos,
         piercings,
       },
