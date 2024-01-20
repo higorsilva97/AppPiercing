@@ -9,6 +9,7 @@ const clienteSchema = new Schema({
     senha: {type: String, required: true},
     telefone: {type:String, required: true},
     endereco: {type: String, required: true},
+    tipo:{type: String, enum: ['cliente'], default: 'cliente'},
     agendamentos: [{ type: Schema.Types.ObjectId, ref: 'Agendamento' }]
 });
 

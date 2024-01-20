@@ -6,6 +6,7 @@ const profissionalSchema = new Schema({
   email: { type: String, required: true, unique: true },
   telefone: { type: String, required: true, unique: true },
   senha: { type: String, required: true },
+  tipo:{type: String, enum: ['profissional'], default: 'profissional'},
   servicos: [{ type: Schema.Types.ObjectId, ref: 'servicos' }],
   piercings: [{ type: Schema.Types.ObjectId, ref: 'piercing' }]
 });
